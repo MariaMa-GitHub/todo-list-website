@@ -5,6 +5,9 @@ const FORBIDDEN_CHAR = ",";
 // store user data
 var data = [];
 
+// display current year
+document.getElementById('year').innerHTML = new Date().getFullYear();
+
 // display random joke
 (async function request () {
   const response = await fetch("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single").then(res=> {
