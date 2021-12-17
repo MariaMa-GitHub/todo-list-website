@@ -1,6 +1,5 @@
 // define program constants
 const DEFAULT_LIST_NAME = "THINGS TO DO";
-const FORBIDDEN_CHAR = ",";
 
 // store user data
 var data = [];
@@ -28,10 +27,13 @@ function getData() {
         document.getElementById("listName").innerHTML = localStorage.getItem("title");
     }
 
-    // update list items
-    if (localStorage.getItem("data") != []) {
+    // get list items
+    let user_data = JSON.parse(localStorage.getItem("data"));
 
-        for (item of localStorage.getItem("data").split(",")) {
+    // update list items
+    if (user_data != []) {
+
+        for (item of user_data) {
 
             let li = document.createElement("li");
             li.innerHTML = item;
@@ -91,7 +93,7 @@ function saveState() {
 // save user data
 function saveData() {
     localStorage.states = JSON.stringify(Array.from(saveState().entries()));
-    localStorage.setItem("data", data);
+    localStorage.setItem("data", JSON.stringify(data));
 }
 
 // create list item
@@ -104,14 +106,11 @@ function createListItem() {
     li.appendChild(t);
 
     // check user input
-    if (inputValue === '') {
+    if (inputValue.trim() === '') {
         alert("An error occurred. Please enter something.");
     }
     else if (data.includes(inputValue)) {
         alert("An error occurred. This task already exists.");
-    }
-    else if (inputValue.includes(FORBIDDEN_CHAR)) {
-        alert("An error occurred. Do not enter special characters.");
     }
     else {
 
