@@ -30,7 +30,6 @@ ul {
   padding: 0;
   list-style-type:none;
 }
-
 ul li {
   cursor: pointer;
   position: relative;
@@ -46,15 +45,12 @@ ul li {
   -ms-user-select: none;
   user-select: none;
 }
-
 ul li:nth-child(odd) {
   background: #f9f9f9;
 }
-
 ul li:hover {
   background: #ddd;
 }
-
 ul li.checked {
   background: #888;
   color: #fff;
@@ -67,7 +63,6 @@ ul li.checked {
   top: 0;
   padding: 1rem;
 }
-
 .close:hover {
   background-color: #f44336;
   color: white;
@@ -78,7 +73,6 @@ ul li.checked {
   color: white;
   text-align: center;
 }
-
 .header:after {
   content: "";
   display: table;
@@ -118,7 +112,6 @@ input {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .enterBtn:hover {
   background-color: #bbb;
 }
@@ -138,7 +131,6 @@ input {
     color: white;
     text-decoration: none;
 }
-
 .owner-link:hover {
     color: #D3D3D3;
 }

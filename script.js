@@ -7,12 +7,10 @@ var data = [];
 
 // display random joke
 (async function request () {
-
   const response = await fetch("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single").then(res=> {
     return res.json();
   });
-
-  document.getElementById('joke').innerHTML = "Programming Joke: " + response.joke
+  document.getElementById('joke').innerHTML = "Programming Joke: " + response.joke;
 })();
 
 // get user data
@@ -32,38 +30,31 @@ function getData() {
 
         for (item of localStorage.getItem("data").split(",")) {
 
-              let li = document.createElement("li");
-              li.innerHTML = item;
-              document.getElementById("thingList").appendChild(li);
+            let li = document.createElement("li");
+            li.innerHTML = item;
+            document.getElementById("thingList").appendChild(li);
 
-              let span = document.createElement("SPAN");
-              let txt = document.createTextNode("\u00D7");
-              span.className = "close";
-              span.appendChild(txt);
-              li.appendChild(span);
-              data.push(li.innerText.split("\n")[0])
+            let span = document.createElement("SPAN");
+            let txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+            data.push(li.innerText.split("\n")[0])
 
-              for (i = 0; i < close.length; i++) {
-                close[i].onclick = function() {
-                    let div = this.parentElement;
-
-                    for (let x = 0; x < data.length; x++){
-
-                        if (data[x] === div.innerText.split("\n")[0]) {
-
-                            data.splice(x, 1);
-                        }
-
+            for (i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+                let div = this.parentElement;
+                for (let x = 0; x < data.length; x++){
+                    if (data[x] === div.innerText.split("\n")[0]) {
+                        data.splice(x, 1);
                     }
-
-
-                    div.remove();
                 }
+                div.remove();
+            }
+            }
 
-              }
-
-              // check list item
-              getState(li)
+            // check list item
+            getState(li)
 
         }
 
@@ -73,44 +64,31 @@ function getData() {
 
 // update list state
 function getState(item) {
-
     let states = new Map(JSON.parse(localStorage.states));
-
     if (states.get(item.innerText.split("\n")[0]) === true) {
         item.classList.toggle('checked');
     }
-
 }
 
 // save list state
 function saveState() {
-
     let states = new Map()
-
     let list = document.getElementsByTagName("LI");
-
     for (item of list) {
-
         if (item.classList.contains("checked")) {
             states.set(item.innerText.split("\n")[0], true);
         }
         else {
             states.set(item.innerText.split("\n")[0], false);
         }
-
     }
-
     return states;
-
 }
 
 // save user data
 function saveData() {
-
     localStorage.states = JSON.stringify(Array.from(saveState().entries()));
-
     localStorage.setItem("data", data);
-
 }
 
 // create list item
@@ -167,9 +145,7 @@ function createListItem() {
 
 // change list title
 document.getElementById("listName").addEventListener("input", function() {
-
     let list_name = document.getElementById("listName").innerText;
-
     if (list_name.trim() != "") {
         localStorage.setItem("title", document.getElementById("listName").innerText);
     }
@@ -178,7 +154,6 @@ document.getElementById("listName").addEventListener("input", function() {
         document.getElementById("listName").innerHTML = DEFAULT_LIST_NAME;
         localStorage.setItem("title", document.getElementById("listName").innerText);
     }
-
 }, false);
 
 // update list state
