@@ -13,7 +13,7 @@
         <link href="style.css" rel="stylesheet" />
     </head>
 
-    <body onload="getData()" onunload="saveData()">
+    <body onload="getUserData()" onunload="saveUserData()">
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -52,10 +52,13 @@
         </div>
 
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; <span id="year"></span> <a class="owner-link" href="https://github.com/MariaMa-GitHub">Maria Ma</a>. All Rights Reserved.</p></div>
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; <span id="year"></span> <a class="owner-link" href="https://github.com/MariaMa-GitHub">Maria Ma</a>. All Rights Reserved.</p>
+            </div>
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="script.js"></script>
 
     </body>

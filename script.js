@@ -5,26 +5,26 @@ const DEFAULT_LIST_NAME = "THINGS TO DO";
 var data = [];
 
 // display current year
-document.getElementById('year').innerHTML = new Date().getFullYear();
+$("#year").text(new Date().getFullYear());
 
 // display random joke
-(async function request () {
-  const response = await fetch("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single").then(res=> {
-    return res.json();
-  });
-  document.getElementById('joke').innerHTML = "Programming Joke: " + response.joke;
+(async function request() {
+    const response = await fetch("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single").then(res=> {
+        return res.json();
+    });
+    $("#joke").text("Programming Joke: " + response.joke);
 })();
 
 // get user data
-function getData() {
+function getUserData() {
 
     // update list name
     let list_name = localStorage.getItem("title");
     if (list_name == null) {
-        document.getElementById("listName").innerHTML = DEFAULT_LIST_NAME;
+        $("#listName").text(DEFAULT_LIST_NAME);
     }
     else {
-        document.getElementById("listName").innerHTML = localStorage.getItem("title");
+        $("#listName").text(localStorage.getItem("title"));
     }
 
     // get list items
@@ -47,19 +47,18 @@ function getData() {
             data.push(li.innerText.split("\n")[0])
 
             for (i = 0; i < close.length; i++) {
-            close[i].onclick = function() {
-                let div = this.parentElement;
-                for (let x = 0; x < data.length; x++){
-                    if (data[x] === div.innerText.split("\n")[0]) {
-                        data.splice(x, 1);
+                close[i].onclick = function() {
+                    let div = this.parentElement;
+                    for (let x = 0; x < data.length; x++){
+                        if (data[x] === div.innerText.split("\n")[0]) {
+                            data.splice(x, 1);
+                        }
                     }
+                    div.remove();
                 }
-                div.remove();
-            }
             }
 
-            // check list item
-            getState(li)
+            getListState(li)
 
         }
 
@@ -67,8 +66,8 @@ function getData() {
 
 }
 
-// update list state
-function getState(item) {
+// get list state
+function getListState(item) {
     let states = new Map(JSON.parse(localStorage.states));
     if (states.get(item.innerText.split("\n")[0]) === true) {
         item.classList.toggle('checked');
@@ -76,10 +75,9 @@ function getState(item) {
 }
 
 // save list state
-function saveState() {
-    let states = new Map()
-    let list = document.getElementsByTagName("LI");
-    for (item of list) {
+function saveListState() {
+    let states = new Map();
+    for (item of $("li")) {
         if (item.classList.contains("checked")) {
             states.set(item.innerText.split("\n")[0], true);
         }
@@ -91,8 +89,8 @@ function saveState() {
 }
 
 // save user data
-function saveData() {
-    localStorage.states = JSON.stringify(Array.from(saveState().entries()));
+function saveUserData() {
+    localStorage.states = JSON.stringify(Array.from(saveListState().entries()));
     localStorage.setItem("data", JSON.stringify(data));
 }
 
@@ -101,7 +99,7 @@ function createListItem() {
 
     // create list item
     let li = document.createElement("li");
-    let inputValue = document.getElementById("inputTextbox").value;
+    let inputValue = $("#inputTextbox").val();
     let t = document.createTextNode(inputValue);
     li.appendChild(t);
 
@@ -115,7 +113,7 @@ function createListItem() {
     else {
 
         // update to-do list
-        document.getElementById("thingList").appendChild(li);
+        $("#thingList").append(li);
 
         // create item settings
         let span = document.createElement("SPAN");
@@ -140,8 +138,8 @@ function createListItem() {
 
     }
 
-  // reset input textbox
-  document.getElementById("inputTextbox").value = "";
+    // reset input textbox
+    $("#inputTextbox").val("");
 
 }
 
@@ -160,10 +158,10 @@ document.getElementById("listName").addEventListener("input", function() {
 
 // update list state
 let list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
+list.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+        event.target.classList.toggle('checked');
+    }
 }, false);
 
 // delete list item
@@ -180,7 +178,7 @@ for (let i = 0; i < close.length; i++) {
     }
 }
 
-// avoid form submission
+// avoid form resubmission
 if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
 }
