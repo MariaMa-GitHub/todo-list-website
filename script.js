@@ -42,7 +42,7 @@ function getUserData() {
                 close[i].onclick = function() {
                     let div = this.parentElement;
                     for (let x = 0; x < data.length; x++){
-                        if (data[x] === div.innerText.split("\n")[0]) {
+                        if (data[x] === div.innerText.split("\n")[0].replace(/\u00D7/g, '')) {
                             data.splice(x, 1);
                         }
                     }
@@ -61,7 +61,7 @@ function getUserData() {
 // get list state
 function getListState(item) {
     let states = new Map(JSON.parse(localStorage.states));
-    if (states.get(item.innerText.split("\n")[0]) === true) {
+    if (states.get(item.innerText.split("\n")[0].replace(/\u00D7/g, '')) === true) {
         item.classList.toggle('checked');
     }
 }
@@ -71,10 +71,10 @@ function saveListState() {
     let states = new Map();
     for (item of $("li")) {
         if (item.classList.contains("checked")) {
-            states.set(item.innerText.split("\n")[0], true);
+            states.set(item.innerText.split("\n")[0].replace(/\u00D7/g, ''), true);
         }
         else {
-            states.set(item.innerText.split("\n")[0], false);
+            states.set(item.innerText.split("\n")[0].replace(/\u00D7/g, ''), false);
         }
     }
     return states;
@@ -120,7 +120,7 @@ function createListItem() {
             close[i].onclick = function() {
                 let div = this.parentElement;
                 for (let x = 0; x < data.length; x++){
-                    if (data[x] === div.innerText.split("\n")[0]) {
+                    if (data[x] === div.innerText.split("\n")[0].replace(/\u00D7/g, '')) {
                         data.splice(x, 1);
                     }
                 }
@@ -162,7 +162,7 @@ for (let i = 0; i < close.length; i++) {
     close[i].onclick = function() {
         let div = this.parentElement;
         for (let x = 0; x < data.length; x++){
-            if (data[x] === div.innerText.split("\n")[0]) {
+            if (data[x] === div.innerText.split("\n")[0].replace(/\u00D7/g, '')) {
                 data.splice(x, 1);
             }
         }
