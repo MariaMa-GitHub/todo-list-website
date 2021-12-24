@@ -7,14 +7,6 @@ var data = [];
 // display current year
 $("#year").text(new Date().getFullYear());
 
-// display random joke
-(async function request() {
-    const response = await fetch("https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single").then(res=> {
-        return res.json();
-    });
-    $("#joke").text("Programming Joke: " + response.joke);
-})();
-
 // get user data
 function getUserData() {
 
@@ -37,7 +29,7 @@ function getUserData() {
 
             let li = document.createElement("li");
             li.innerHTML = item;
-            document.getElementById("thingList").appendChild(li);
+            document.getElementById("taskList").appendChild(li);
 
             let span = document.createElement("SPAN");
             let txt = document.createTextNode("\u00D7");
@@ -113,7 +105,7 @@ function createListItem() {
     else {
 
         // update to-do list
-        $("#thingList").append(li);
+        $("#taskList").append(li);
 
         // create item settings
         let span = document.createElement("SPAN");

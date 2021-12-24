@@ -1,28 +1,21 @@
 html, body {
   height: 100%;
 }
-
 body {
   display: flex;
   flex-direction: column;
 }
-.container {
-  flex: 1 0 auto;
-}
-.footer {
-  flex-shrink: 0;
-}
-
-.title-container {
-    height: 3rem;
-}
-
-.todolist-page {
-    margin: 15%;
-}
 
 * {
   box-sizing: border-box;
+}
+
+.todolist-page {
+  margin: 5%;
+}
+
+.container {
+  flex: 1 0 auto;
 }
 
 ul {
@@ -68,41 +61,36 @@ ul li.checked {
   color: white;
 }
 
-.header {
+.user-data {
   padding-bottom: 2%;
   color: white;
   text-align: center;
 }
-.header:after {
-  content: "";
-  display: table;
-  clear: both;
+
+.footer {
+  flex-shrink: 0;
+}
+
+.user-data {
+  margin-bottom: 0.7rem;
 }
 
 input {
   border: 1px solid black;
-  border-radius: 5px;
-  padding: 0.5rem;
-  float: left;
   width: 100%;
   font-size: 16px;
+  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.thing-textbox {
-    width: 75%;
-    padding: 0.8rem;
-    margin-right: 2%;
-    border-radius: 0;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
 }
 
 .enterBtn {
   padding: 0.8rem;
-  width: 23%;
+  width: 100%;
   background: #d9d9d9;
   color: #555;
-  float: left;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
@@ -116,21 +104,20 @@ input {
   background-color: #bbb;
 }
 
-.extra {
-    margin-top: 2%;
-}
-
-.joke {
-    border: 1px solid black;
-    border-radius: 0;
-    padding: 1rem;
-    text-align: justify;
-}
-
 .owner-link {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 .owner-link:hover {
-    color: #D3D3D3;
+  color: #D3D3D3;
+}
+
+@media only screen and (min-width: 768px) {
+  .todolist-page {
+    margin: 15%;
+  }
+  .task-textbox {
+    text-align: left;
+    margin-bottom: 0;
+  }
 }

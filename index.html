@@ -15,45 +15,51 @@
 
     <body onload="getUserData()" onunload="saveUserData()">
 
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand">To-Do List &nbsp; <i class="fas fa-tasks"></i></a>
+            <div class="container px-3">
+                <a class="navbar-brand" href="#">To-Do List &nbsp; <i class="fas fa-tasks"></i></a>
             </div>
         </nav>
 
+        <!-- Header -->
         <header class="py-1 bg-light border-bottom">
             <div class="container">
-                <div class="title-container text-center my-5">
-                    <h1 class="fw-bolder"><span id="listName" contenteditable="true"></span></h1>
+                <div class="title-container text-center h-auto my-5">
+                    <h1 class="fw-bolder mb-0"><span id="listName" contenteditable="true"></span></h1>
                 </div>
             </div>
         </header>
 
-        <div class="container">
+        <!-- Content -->
+        <main class="container">
 
-            <div class="todolist-page row my-5 justify-content-center">
+            <div class="todolist-page my-5 justify-content-center">
 
-                <div class="header mt-1">
+                <section class="user-data">
                     <form action="" method="POST" onkeypress="return event.keyCode != 13">
-                        <input class="thing-textbox" type="text" id="inputTextbox" name="task" placeholder="Thing To Do">
-                        <span id="enterButton" onclick="createListItem()" class="enterBtn">Enter</span>
+                        <div class="row">
+                            <div class="col-12 col-md-8">
+                                <input class="task-textbox" type="text" id="inputTextbox" name="task" placeholder="Thing To Do">
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <button id="enterButton" onclick="createListItem()" class="enterBtn">Enter</button>
+                            </div>
+                        </div>
                     </form>
-                </div>
+                </section>
 
-                <ul id="thingList">
+                <ul id="taskList" class="task-list">
                 </ul>
-
-                <div class="extra d-none d-lg-block mb-1">
-                    <div id="joke" class="joke bg-light"></div>
-                </div>
 
             </div>
 
-        </div>
+        </main>
 
-        <footer class="py-5 bg-dark">
+        <!-- Footer -->
+        <footer class="p-5 bg-dark">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; <span id="year"></span> <a class="owner-link" href="https://github.com/MariaMa-GitHub">Maria Ma</a>. All Rights Reserved.</p>
+                <p class="m-0 text-center text-white">Copyright &copy; <span id="year"></span> <a class="owner-link" href="https://github.com/MariaMa-GitHub">Maria Ma</a>. <wbr>All Rights Reserved.</p>
             </div>
         </footer>
 
