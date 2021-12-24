@@ -36,7 +36,7 @@ function getUserData() {
             span.className = "close";
             span.appendChild(txt);
             li.appendChild(span);
-            data.push(li.innerText.split("\n")[0])
+            data.push(li.innerText.split("\n")[0].replace(/\u00D7/g, ''))
 
             for (i = 0; i < close.length; i++) {
                 close[i].onclick = function() {
@@ -113,7 +113,7 @@ function createListItem() {
         span.className = "close";
         span.appendChild(txt);
         li.appendChild(span);
-        data.push(li.innerText.split("\n")[0])
+        data.push(li.innerText.split("\n")[0].replace(/\u00D7/g, ''))
 
         // check item settings
         for (i = 0; i < close.length; i++) {
