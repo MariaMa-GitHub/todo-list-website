@@ -76,6 +76,7 @@ ul li.checked {
 }
 
 input {
+  border-radius: 0;
   border: 1px solid black;
   width: 100%;
   font-size: 16px;
